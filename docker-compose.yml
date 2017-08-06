@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    networks:
+      - jdonado-network
+    volumes:
+      - "./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+      - "./etc/ssl:/etc/ssl"
+      - "./web:/var/www/html"
+
+networks:
+   jdonado-network:
+     external:
+       name: jdonado-network
